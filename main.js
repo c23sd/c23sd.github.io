@@ -3,6 +3,8 @@ var ctx = canvas.getContext("2d");
 canvas.width  = window.innerWidth - 50;
 canvas.height = window.innerHeight - 50;
 
+var score = 0;
+player1GoingRight = true;
 function player(x,y,color){
 	this.x = x;
 	this.y = y;
@@ -24,6 +26,22 @@ function player(x,y,color){
 			this.x += this.dirX;
 		}
 		else{this.x -= this.dirX}
+		if(this.goingRight != player1GoingRight){
+			score += 1;
+			player1GoingRight =this.goingRight;
+			console.log(score);
+		}
+		if(this.y < 0){
+			this.y = 0;
+			this.dirY = 1;
+			score = 0;
+		}
+		else if(this.y > canvas.height-this.size){
+			this.y = canvas.height-this.size;
+			this.dirY = -5;
+			score = 0;
+		}
+
 	}
 	this.draw = function(){
 		ctx.fillStyle = this.color;
