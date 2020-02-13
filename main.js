@@ -4,6 +4,8 @@ canvas.width  = window.innerWidth - 50;
 canvas.height = window.innerHeight - 50;
 
 var score = 0;
+
+
 player1GoingRight = true;
 function player(x,y,color){
 	this.x = x;
@@ -183,6 +185,8 @@ function loop(){
 	spikes[i].draw();
 	spikes2[i].draw();
 	}
+	ctx.font = "30px Arial";
+	ctx.fillText(score,canvas.width/2,canvas.height/2);
 	requestAnimationFrame(loop)
 }
 
