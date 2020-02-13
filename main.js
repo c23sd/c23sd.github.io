@@ -64,6 +64,62 @@ function spike(x, y, color, rightSide){
 		else {
 			this.state = false;
 		}
+//collision detection
+		if(this.state == true){
+			if(this.rightSide == false){
+				if(player1.x<=20 && (player1.y > this.y - 15 - player1.size && player1.y < this.y + 15)){
+					// check small rectangle hitboxes
+					// using a library
+var V = SAT.Vector;
+var P = SAT.Polygon;
+
+// A square
+var polygon1 = new P(new V(), [
+  new V(player1.x,player1.y+player1.size), new V(player1.x +player1.size,player1.y+player1.size), new V(player1.x + player1.size,player1.y), new V(player1.x,player1.y)
+]);
+// A triangle
+var polygon2 = new P(new V(), [
+  new V(this.x-20,this.y+15), new V(this.x,this.y), new V(this.x-20,this.y-15)
+]);
+var response = new SAT.Response();
+var collided = SAT.testPolygonPolygon(polygon1, polygon2, response);
+if(collided){
+	score = 0;
+}
+
+// Stealing code^^^^^^
+
+				}
+			}
+			else{
+				if(player1.x+player1.size > this.x && (player1.y > this.y - 15 - player1.size && player1.y < this.y + 15)){
+					//check small rectangle hitboxes
+					var V = SAT.Vector;
+var P = SAT.Polygon;
+
+// A square
+var polygon1 = new P(new V(), [
+  new V(player1.x,player1.y+player1.size), new V(player1.x +player1.size,player1.y+player1.size), new V(player1.x + player1.size,player1.y), new V(player1.x,player1.y)
+]);
+// A triangle
+var polygon2 = new P(new V(), [
+  new V(this.x,this.y), new V(this.x+20,this.y+15), new V(this.x+20,this.y-15)
+]);
+var response = new SAT.Response();
+var collided = SAT.testPolygonPolygon(polygon1, polygon2, response);
+if(collided){
+	score = 0;
+
+}
+				}
+			}
+		}
+//collision detection^^^^^^
+
+
+
+
+
 
 	}
 	this.draw = function(){
@@ -98,12 +154,7 @@ function spike(x, y, color, rightSide){
 	}
 }
 }
-// complicated collision detection in progess
-	
 
-
-
-// ^^^^^^^^^^^^^^^^^^^^^^^^
 }
 
 var player1 = new player(0, 0, "blue"); 
