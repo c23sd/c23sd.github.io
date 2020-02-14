@@ -12,9 +12,10 @@ function player(x,y,color){
 	this.y = y;
 	this.dirX = 5;
 	this.dirY = 0;
-	this.size = 20;
+	this.size = 25;
 	this.color = color;
 	this.goingRight = true;
+	this.img = new Image();
 	this.update = function(){
 		this.dirY += 0.2
 		this.y += this.dirY;
@@ -47,7 +48,7 @@ function player(x,y,color){
 	}
 	this.draw = function(){
 		ctx.fillStyle = this.color;
-		ctx.fillRect(this.x, this.y, this.size, this.size);
+		ctx.drawImage(this.img, this.x, this.y, this.size, this.size);
 	}
 
 }
@@ -70,7 +71,6 @@ function spike(x, y, color, rightSide){
 		if(this.state == true){
 			if(this.rightSide == false){
 				if(player1.x<=20 && (player1.y > this.y - 15 - player1.size && player1.y < this.y + 15)){
-					// check small rectangle hitboxes
 					// using a library
 var V = SAT.Vector;
 var P = SAT.Polygon;
@@ -86,7 +86,7 @@ var polygon2 = new P(new V(), [
 var response = new SAT.Response();
 var collided = SAT.testPolygonPolygon(polygon1, polygon2, response);
 if(collided){
-	score = 0;
+	score = -1;
 }
 
 // Stealing code^^^^^^
@@ -110,17 +110,13 @@ var polygon2 = new P(new V(), [
 var response = new SAT.Response();
 var collided = SAT.testPolygonPolygon(polygon1, polygon2, response);
 if(collided){
-	score = 0;
+	score = -1;
 
 }
 				}
 			}
 		}
 //collision detection^^^^^^
-
-
-
-
 
 
 	}
@@ -160,6 +156,8 @@ if(collided){
 }
 
 var player1 = new player(0, 0, "blue"); 
+player1.img.src = "bird.png";
+
 var spikes = [];
 var spikes2 = [];
 for(var i = 0; i< canvas.width/40; i++){
@@ -171,7 +169,7 @@ for(var i = 0; i< canvas.width/40; i++){
 
 
 
-window.addEventListener("click", function(){ player1.dirY=-7 });
+window.addEventListener("click", function(){ player1.dirY=-6 });
 
 
 
