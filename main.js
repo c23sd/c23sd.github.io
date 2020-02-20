@@ -32,17 +32,14 @@ function player(x,y,color){
 		if(this.goingRight != player1GoingRight){
 			score += 1;
 			player1GoingRight =this.goingRight;
-			console.log(score);
 		}
 		if(this.y < 0){
 			this.y = 0;
 			this.dirY = 1;
-			score = 0;
 		}
 		else if(this.y > canvas.height-this.size){
 			this.y = canvas.height-this.size;
 			this.dirY = -5;
-			score = 0;
 		}
 
 	}
