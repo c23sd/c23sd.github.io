@@ -3,6 +3,7 @@ var ctx = canvas.getContext("2d");
 canvas.width  = window.innerWidth - 50;
 canvas.height = window.innerHeight - 50;
 
+
 var score = 0;
 
 
@@ -184,6 +185,8 @@ function loop(){
 	ctx.fillText(score,canvas.width/2,canvas.height/2);
 	requestAnimationFrame(loop)
 }
+
+
 
 
 requestAnimationFrame(loop);
